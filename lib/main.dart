@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                height: 50.0,
+                height: 55.0,
               ),
               RaisedButton(
                 onPressed: () {},
