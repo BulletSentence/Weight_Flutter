@@ -17,8 +17,15 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Weight Manager"
-        ),
+          "Weight Manager"),
+          centerTitle: true,
+          backgroundColor: Colors.redAccent,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {},
+            ),
+          ],
       ),
     );
   }
