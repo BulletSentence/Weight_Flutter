@@ -46,6 +46,9 @@ class _HomeState extends State<Home> {
                   fontSize: 25,
                 ),
               ),
+              Container(
+                height: 55.0,
+              ),
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
