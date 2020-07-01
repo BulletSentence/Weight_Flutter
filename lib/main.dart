@@ -12,6 +12,9 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+  TextEditingController wei = new TextEditingController();
+  TextEditingController hei = new TextEditingController();
+
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -45,9 +48,10 @@ class _HomeState extends State<Home> {
                   color: Colors.red,
                   fontSize: 25,
                 ),
+                controller: wei,
               ),
               Container(
-                height: 55.0,
+                height: 20.0,
               ),
               TextField(
                 keyboardType: TextInputType.number,
@@ -60,6 +64,7 @@ class _HomeState extends State<Home> {
                   color: Colors.red,
                   fontSize: 25,
                 ),
+                controller: hei,
               ),
               Container(
                 height: 55.0,
