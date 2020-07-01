@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   TextEditingController wei = new TextEditingController();
   TextEditingController hei = new TextEditingController();
 
-  
+  GlobalKey<FormState> _formstate = GlobalKey<FormState>();
 
   String info = "Type your data";
 
@@ -64,64 +64,77 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Icon(Icons.person_pin, size: 120, color: Colors.redAccent),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Your weight (kg)",
-                  labelStyle: TextStyle(color: Colors.redAccent),
+          child: Form(
+            key: _formstate,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Icon(Icons.person_pin, size: 120, color: Colors.redAccent),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "Your weight (kg)",
+                    labelStyle: TextStyle(color: Colors.redAccent),
+                  ),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 25,
+                  ),
+                  controller: wei,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Weight empty";}
+                  },
                 ),
-                textAlign: TextAlign.center,
-                style: TextStyle(
+                Container(
+                  height: 20.0,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "Your Height",
+                    labelStyle: TextStyle(color: Colors.redAccent),
+                  ),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 25,
+                  ),
+                  controller: hei,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Weight empty";}
+                  },
+                ),
+                Container(
+                  height: 55.0,
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    if (_formstate.currentState.validate()){
+                      calculate();
+                    }
+                  },
+                  child: Text(
+                    "Calculate",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                   color: Colors.red,
-                  fontSize: 25,
                 ),
-                controller: wei,
-              ),
-              Container(
-                height: 20.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Your Height",
-                  labelStyle: TextStyle(color: Colors.redAccent),
+                Container(
+                  height: 20.0,
                 ),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 25,
-                ),
-                controller: hei,
-              ),
-              Container(
-                height: 55.0,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  calculate();
-                },
-                child: Text(
-                  "Calculate",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                color: Colors.red,
-              ),
-              Container(
-                height: 20.0,
-              ),
-              Text(
-                info,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 25,
-                ),
-              )
-            ],
+                Text(
+                  info,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 25,
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }
