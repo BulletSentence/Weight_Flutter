@@ -12,18 +12,39 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+class _HomeState extends State<Home> {
+
   TextEditingController wei = new TextEditingController();
   TextEditingController hei = new TextEditingController();
+
+  
 
   String info = "Type your data";
 
   void _reset () {
+    setState(() {
     hei.text = "";
     wei.text = "";
     info = "Type your data";
+    });
   }
 
-class _HomeState extends State<Home> {
+  void calculate() {
+    setState(() {
+      double weight = double.parse(wei.text);
+      double height = double.parse(hei.text) / 100;
+      double imc = weight / (height * height);
+
+      if (imc < 18.6){
+        info = "Below the normal WEIGHT (${imc.toStringAsPrecision(3)})";
+      }
+      if (imc > 18.6){
+        info = "OK (${imc.toStringAsPrecision(3)})";
+      }
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +101,9 @@ class _HomeState extends State<Home> {
                 height: 55.0,
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  calculate();
+                },
                 child: Text(
                   "Calculate",
                   style: TextStyle(color: Colors.white, fontSize: 20),
