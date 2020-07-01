@@ -15,6 +15,14 @@ class Home extends StatefulWidget {
   TextEditingController wei = new TextEditingController();
   TextEditingController hei = new TextEditingController();
 
+  String info = "Type your data";
+
+  void _reset () {
+    hei.text = "";
+    wei.text = "";
+    info = "Type your data";
+  }
+
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +34,9 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () {},
+              onPressed: () {
+                _reset();
+              },
             ),
           ],
         ),
@@ -72,13 +82,16 @@ class _HomeState extends State<Home> {
               RaisedButton(
                 onPressed: () {},
                 child: Text(
-                  "Calcular",
+                  "Calculate",
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 color: Colors.red,
               ),
+              Container(
+                height: 20.0,
+              ),
               Text(
-                "Info",
+                info,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.red,
